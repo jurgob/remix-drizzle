@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 import { Plus } from 'react-feather';
 import {createDataService} from "../dataService"
+import { Form } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -27,7 +28,7 @@ import { ActionFunction, redirect } from "@remix-run/node";
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const text = formData.get("text");
-
+  console.log(`adding todo with text: `, text);
   if (typeof text !== "string" || text.trim() === "") {
     return json({ error: "Invalid input" }, { status: 400 });
   }
@@ -46,10 +47,11 @@ export default function Index() {
     <div className="flex h-screen justify-center p-5">
       <div className="flex flex-col items-center gap-16">
         <header>
-          <h1 className="text-1xl font-bold text-center text-gray-800 dark:text-gray-200 min-w-[280px]">
-            <form className="flex flex-row items-center border border-gray-300 rounded-md ">
+          <div className="text-1xl font-bold text-center text-gray-800 dark:text-gray-200 min-w-[280px]">
+            <Form method="post" className="flex flex-row items-center border border-gray-300 rounded-md ">
               <input
               type="text"
+              name="text"
               placeholder="item..."
               className="w-full rounded-l-md  p-2 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
               />
@@ -59,8 +61,8 @@ export default function Index() {
               >
               <Plus />
               </button>
-            </form>
-          </h1>
+            </Form>
+          </div>
         </header>
         <main className="flex flex-col justify-center gap-2 rounded-3xl border border-gray-200 p-6 dark:border-gray-700 min-w-[280px]">
           <p className="leading-6 text-gray-700 dark:text-gray-200">
