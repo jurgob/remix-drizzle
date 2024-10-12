@@ -4,7 +4,7 @@ import { todoTable} from "./db/schema";
 
 
 export async function createDataService() {
-    
+    console.log("creating data service");
     await migrateTodoSchema();
     
     const createTodo = async (todo: typeof todoTable.$inferInsert) => {

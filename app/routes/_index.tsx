@@ -12,9 +12,10 @@ export const meta: MetaFunction = () => {
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
+
+
 export const loader = async () => {
   const dataServiceClient = await createDataService();
-  // const todo  =dataServiceClient.createTodo({text: "Learn how to use Drizzle ORM"});
   const todos = await dataServiceClient.getTodos({page:1, pageSize:10});
 
   const data = {
