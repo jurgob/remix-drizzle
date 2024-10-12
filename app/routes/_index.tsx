@@ -11,11 +11,10 @@ export const meta: MetaFunction = () => {
 };
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-
+import {dataServiceClient} from "../dataServiceClient.server";
 
 
 export const loader = async () => {
-  const dataServiceClient = await createDataService();
   const todos = await dataServiceClient.getTodos({page:1, pageSize:10});
 
   const data = {
@@ -34,7 +33,6 @@ export const action: ActionFunction = async ({ request }) => {
     return json({ error: "Invalid input" }, { status: 400 });
   }
 
-  const dataServiceClient = await createDataService();
   await dataServiceClient.createTodo({ text });
 
   const url = new URL(request.url);
