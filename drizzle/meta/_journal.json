@@ -8,6 +8,13 @@
       "when": 1728681641707,
       "tag": "0000_dry_doctor_doom",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1728938695538,
+      "tag": "0001_clever_forgotten_one",
+      "breakpoints": true
     }
   ]
 }

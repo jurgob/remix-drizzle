@@ -1,7 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { Plus } from 'react-feather';
-import {createDataService} from "../dataService"
-import { Form } from "@remix-run/react";
+import { Form,useLoaderData } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,8 +8,7 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { json,ActionFunction, redirect  } from "@remix-run/node";
 import {dataServiceClient} from "../dataServiceClient.server";
 
 
@@ -22,8 +20,6 @@ export const loader = async () => {
   };
   return json(data);
 };
-
-import { ActionFunction, redirect } from "@remix-run/node";
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -47,14 +43,14 @@ export default function Index() {
       <div className="flex flex-col items-center gap-16">
         <header>
           <div className="text-1xl font-bold text-center text-gray-800 dark:text-gray-200 min-w-[280px]">
-            <Form method="post" className="flex flex-row items-center border border-gray-300 rounded-md ">
+            <Form  name="add_todo" method="post" className="flex flex-row items-center border border-gray-300 rounded-md ">
               <input
-              type="text"
-              name="text"
-              placeholder="item..."
-              className="w-full rounded-l-md  p-2 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
-              />
+                type="text"
+                name="todo_text"
+                placeholder="Add a new todo"
+                className="rounded-l-md border-none w-full px-4 py-2"/>
               <button
+              name="submit"
               type="submit"
               className="rounded-r-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800"
               >
@@ -67,7 +63,6 @@ export default function Index() {
           <p className="leading-6 text-gray-700 dark:text-gray-200">
             TODO
           </p>
-
           <ul>
             {todos.map(({ text }, idx) => (
               <li key={idx}>
@@ -78,7 +73,6 @@ export default function Index() {
               </li>
             ))}
           </ul>
-
         </main>
       </div>
     </div>
