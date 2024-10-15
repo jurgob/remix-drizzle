@@ -49,7 +49,10 @@ function handleBotRequest(
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
       <RemixServer
-        context={remixContext}
+        // TODO: remove this cast to any  
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        context={remixContext as any}
         url={request.url}
         abortDelay={ABORT_DELAY}
       />,
@@ -99,7 +102,9 @@ function handleBrowserRequest(
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
       <RemixServer
-        context={remixContext}
+        // TODO: remove this cast to any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+        context={remixContext as any}
         url={request.url}
         abortDelay={ABORT_DELAY}
       />,
