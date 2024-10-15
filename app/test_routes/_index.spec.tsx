@@ -3,10 +3,9 @@ import {
   render,
   screen,
   fireEvent,
-  RenderResult,
 } from "@testing-library/react";
 
-import {test,expect, beforeEach, describe, afterEach} from "vitest";
+import {test,expect, describe, afterEach} from "vitest";
 import IndexPage, {loader, meta, action} from "../routes/_index";
 
 describe("Index page", () => {
