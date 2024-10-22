@@ -9,6 +9,11 @@ services: # Define the services to be run by Docker Compose
       - POSTGRES_DB=dbname # The name of the database to be created
       - POSTGRES_USER=user # The username for the PostgreSQL database
       - POSTGRES_PASSWORD=pass # The password for the PostgreSQL database user
-
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s 
 volumes: # Define named volumes that can be used by services
   pgdata: # Named volume 'pgdata' used to persist PostgreSQL data outside the container

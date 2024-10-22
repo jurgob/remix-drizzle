@@ -6,7 +6,7 @@
   "scripts": {
     "build": "remix vite:build",
     "dev": "run-pty % npm run db:up % npm run dev:remix",
-    "dev:remix": "sleep 5 && remix vite:dev",
+    "dev:remix": " remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/server/index.js",
     "db:generate": "drizzle-kit generate",
