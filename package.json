@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "remix vite:build",
-    "dev": "remix vite:dev",
+    "dev": "run-pty % npm run db:up % npm run dev:remix",
+    "dev:remix": "sleep 5 && remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/server/index.js",
     "db:generate": "drizzle-kit generate",
@@ -48,6 +49,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "jsdom": "^25.0.1",
     "postcss": "^8.4.38",
+    "run-pty": "^5.0.0",
     "tailwindcss": "^3.4.4",
     "tsx": "^4.19.1",
     "typescript": "^5.1.6",
