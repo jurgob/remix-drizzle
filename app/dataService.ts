@@ -1,10 +1,11 @@
 import {db} from "./db/db";
 import {migrateTodoSchema} from "./db/migrate";
 import { todoTable} from "./db/schema";
-
+import {env} from "./env";
 
 export async function createDataService() {
     console.log("creating data service");
+    console.log(`env.DATABASE_URL `, env.DATABASE_URL);
     await migrateTodoSchema();
     
     const createTodo = async (todo: typeof todoTable.$inferInsert) => {
